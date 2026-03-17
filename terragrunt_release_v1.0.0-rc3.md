@@ -1,8 +1,8 @@
-## 🎉 v1.0.0 Release Candidate
+## 🎉 v1.0.0 Release Candidate
 
 This is the third release candidate for Terragrunt 1.0.
 
-This release includes performance improvements, reliability fixes, and several user-facing bug fixes since RC2; please test it in your workflows and share feedback in the GitHub Discussions forum at https://github.com/gruntwork-io/terragrunt/discussions, and review the release candidate timeline in [The Road to 1.0: Release Schedule](https://www.gruntwork.io/blog/the-road-to-1-0-release-schedule).
+This release includes performance improvements, reliability fixes, and several user-facing bug fixes since RC2, and we recommend testing it in your workflows and sharing feedback in [GitHub Discussions](https://github.com/gruntwork-io/terragrunt/discussions); for details on the release candidate process and timeline, see [The Road to 1.0: Release Schedule](https://www.gruntwork.io/blog/the-road-to-1-0-release-schedule).
 
 ## 🐛 Bug Fixes
 
