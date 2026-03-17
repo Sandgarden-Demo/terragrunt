@@ -70,7 +70,7 @@ Terragrunt now avoids cache collisions when you enable `--use-partial-parse-conf
 
 Terragrunt now presents engine output with cleaner formatting and labels stdout/stderr entries with `engine` instead of `tofu`.
 
-## 🏎️ Performance Improvements
+## 🏎️ Performance Improvements
 
 ### Discovery performance improved
 
@@ -80,7 +80,7 @@ Terragrunt now discovers and filters units and stacks more efficiently during ru
 
 Terragrunt now speeds up `EncodeSourceVersion` by optimizing directory traversal.
 
-## ⚙️ Process Updates
+## ⚙️ Process Updates
 
 ### Go bumped to `v1.26.0`
 
