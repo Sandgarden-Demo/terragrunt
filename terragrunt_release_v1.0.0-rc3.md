@@ -2,7 +2,7 @@
 
 This is the third release candidate for Terragrunt 1.0.
 
-This release covers a breaking change in how Terragrunt loads unit vs stack configuration files, plus bug fixes for hook failure diagnostics, `run` flag errors, provider version discovery, include path tracking, and offline discovery. Try it out and share feedback in the [GitHub Discussion](https://github.com/gruntwork-io/terragrunt/discussions), and review the release candidate schedule in [The Road to 1.0: Release Schedule](https://www.gruntwork.io/blog/the-road-to-1-0-release-schedule).
+This release covers a breaking change in how Terragrunt loads unit vs stack configuration files, plus bug fixes for hook failure diagnostics, `run` flag errors, provider version discovery, include path tracking, and offline discovery. Share feedback in the [GitHub Discussion](https://github.com/gruntwork-io/terragrunt/discussions), and review the release candidate schedule in [The Road to 1.0: Release Schedule](https://www.gruntwork.io/blog/the-road-to-1-0-release-schedule).
 
 ## 🛠️ Breaking Changes
 
@@ -84,17 +84,17 @@ Developer tooling and lint configuration were adjusted to reduce false positives
 
 ### More efficient filter evaluation
 
-Terragrunt evaluates filters more efficiently, improving performance for workflows that rely heavily on filtering and classification.
+Terragrunt improves filter evaluation, which reduces overhead for workflows that rely heavily on filtering and classification.
 
 ## ⚙️ Process Updates
 
 ### Options and configuration plumbing refactored
 
-Terragrunt refactored option handling to use dedicated option structs (e.g., `run.Options`) instead of a single global options struct.
+Terragrunt refactors option handling to use dedicated option structs (e.g., `run.Options`) instead of a single global options struct.
 
 ### Standardized path normalization strategy
 
-Terragrunt standardized path normalization to reduce `filepath.Abs`/`filepath.ToSlash` usage in favor of root-working-dir–relative joins and `filepath.Clean`.
+Terragrunt standardizes path normalization by reducing `filepath.Abs`/`filepath.ToSlash` usage in favor of root-working-dir–relative joins and `filepath.Clean`.
 
 ### More configurable remote state initialization
 
@@ -102,11 +102,11 @@ Terragrunt standardized path normalization to reduce `filepath.Abs`/`filepath.To
 
 ### Output and execution wiring simplified
 
-Terragrunt centralized output handling in `Writers`, reducing coupling by passing only required execution and output context to components.
+Terragrunt centralizes output handling in `Writers`, which reduces coupling by passing only required execution and output context to components.
 
 ### Error handling standardized
 
-Terragrunt standardized worker-pool and retry error handling around `MultiError` and stricter stderr matching.
+Terragrunt standardizes worker-pool and retry error handling around `MultiError` and stricter stderr matching.
 
 ### Refined cloud-provider auth and CLI helpers
 
