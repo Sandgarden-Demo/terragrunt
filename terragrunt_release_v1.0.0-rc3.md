@@ -2,7 +2,7 @@
 
 This is the third release candidate for Terragrunt 1.0.
 
-This release includes two breaking changes and several stability fixes identified during release candidate testing, with additional updates to documentation and release automation; feedback shared in [GitHub Discussions](https://github.com/gruntwork-io/terragrunt/discussions) supports finalizing 1.0, and the overall release candidate timeline is documented in [The Road to 1.0: Release Schedule](https://www.gruntwork.io/blog/the-road-to-1-0-release-schedule).
+This release includes two breaking changes and several stability fixes identified during release candidate testing, with additional updates to documentation and release automation; sharing feedback in [GitHub Discussions](https://github.com/gruntwork-io/terragrunt/discussions) is recommended to support finalizing 1.0, and the overall release candidate timeline is documented in [The Road to 1.0: Release Schedule](https://www.gruntwork.io/blog/the-road-to-1-0-release-schedule).
 
 ## 🛠️ Breaking Changes
 
@@ -26,7 +26,7 @@ terragrunt.stack.hcl
 
 Path normalization now builds paths from the repository working directory using root-relative joins plus `filepath.Clean`, instead of relying on `filepath.Abs` and forward-slash normalization.
 This change affects workflows that relied on Terragrunt implicitly converting relative paths into absolute paths or normalizing path separators.
-If automation depends on absolute paths, compute absolute paths explicitly and pass them into Terragrunt (for example via `--working-dir`) instead of relying on implicit conversion.
+Automation that depends on absolute paths should compute absolute paths explicitly and pass them into Terragrunt (for example via `--working-dir`) instead of relying on implicit conversion.
 
 e.g.
 
@@ -93,7 +93,7 @@ The API now filters provider versions down to valid semver values and logs skipp
 ### Worktree diff filter expansion fails fast on invalid glob input
 
 Worktree diff filter expansion previously continued after silent or partial filter processing failures.
-Filter-glob expansion now compiles globs eagerly and returns errors to prevent confusing “no matches” results when filter input is invalid.
+Filter-glob expansion now compiles globs eagerly and returns errors to prevent confusing "no matches" results when filter input is invalid.
 
 ### Include tracking consistently normalizes relative include paths
 
