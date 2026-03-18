@@ -2,7 +2,7 @@
 
 This is the third release candidate for Terragrunt 1.0.
 
-This release includes two breaking changes and several stability fixes identified during release candidate testing, with additional updates to documentation and release automation; sharing feedback in [GitHub Discussions](https://github.com/gruntwork-io/terragrunt/discussions) is recommended to help finalize 1.0, and the overall release candidate timeline is documented in [The Road to 1.0: Release Schedule](https://www.gruntwork.io/blog/the-road-to-1-0-release-schedule).
+This release includes two breaking changes and several stability fixes identified during release candidate testing, with additional updates to documentation and release automation; feedback shared in [GitHub Discussions](https://github.com/gruntwork-io/terragrunt/discussions) helps finalize 1.0, and the overall release candidate timeline is documented in [The Road to 1.0: Release Schedule](https://www.gruntwork.io/blog/the-road-to-1-0-release-schedule).
 
 ## 🛠️ Breaking Changes
 
@@ -10,7 +10,7 @@ This release includes two breaking changes and several stability fixes identifie
 
 Configuration discovery now fails fast when a directory contains both `terragrunt.hcl` and `terragrunt.stack.hcl`.
 Previously, this layout could produce ambiguous behavior during stack and unit loading.
-To migrate, move one of the configuration files into a different directory (or remove the unused file) so each directory contains exactly one Terragrunt configuration file type.
+Migration requires moving one of the configuration files into a different directory (or removing the unused file) so each directory contains exactly one Terragrunt configuration file type.
 
 e.g.
 
@@ -37,7 +37,7 @@ $ terragrunt run-all plan --working-dir "$REPO_ROOT/live"
 
 ## 📖 Documentation Updates
 
-### Documentation site migrated to `docs.terragrunt.com`
+### Documentation site now uses `docs.terragrunt.com`
 
 The documentation site now targets `docs.terragrunt.com` and includes redirects and schema updates to keep existing links working.
 This update also reorganizes the Starlight documentation project so documentation content and tooling live under `docs/`.
@@ -122,5 +122,5 @@ The build enables the `lll` linter more selectively and wraps long Go function s
 ### Release automation and dependency workflows updated
 
 Release build automation now uses updated GitHub Actions for builds, artifact upload/download, code signing, and tooling setup to incorporate upstream fixes and security patches.
-Development and test dependencies (including the documentation toolchain) were also updated to incorporate recent patches.
+This update also refreshes development and test dependencies (including the documentation toolchain) to incorporate recent patches.
 
