@@ -2,53 +2,65 @@
 
 This is the third release candidate for Terragrunt 1.0.
 
-This release covers the latest user-facing changes since the previous release candidate; try it out and share feedback in the [GitHub Discussion](https://github.com/gruntwork-io/terragrunt/discussions), and review the release candidate schedule in [The Road to 1.0: Release Schedule](https://www.gruntwork.io/blog/the-road-to-1-0-release-schedule).
+This release covers a breaking change in how Terragrunt loads unit vs stack configuration files, plus bug fixes for hook failure diagnostics, `run` flag errors, provider version discovery, include path tracking, and offline discovery. Try it out and share feedback in the [GitHub Discussion](https://github.com/gruntwork-io/terragrunt/discussions), and review the release candidate schedule in [The Road to 1.0: Release Schedule](https://www.gruntwork.io/blog/the-road-to-1-0-release-schedule).
 
 ## 🛠️ Breaking Changes
 
 ### `terragrunt.hcl` and `terragrunt.stack.hcl` cannot coexist in the same directory
 
-Terragrunt now fails fast when a single directory contains both `terragrunt.hcl` and `terragrunt.stack.hcl`, so you must choose one configuration format per folder.
+Terragrunt errors when a single directory contains both `terragrunt.hcl` and `terragrunt.stack.hcl`, so you must choose one configuration format per folder.
 
-## 🐛 Bug Fixes
+e.g.
 
-### `${...}` expansion avoided in complex `TF_VAR_*` values
+```bash
+# Invalid: both file types in the same folder
+./live/prod/app/terragrunt.hcl
+./live/prod/app/terragrunt.stack.hcl
 
-Terraform-related environment variable values are now handled more safely, preventing accidental interpolation issues in complex inputs.
-
-### More actionable diagnostics when hooks fail
-
-Terragrunt produces more actionable diagnostics when hooks fail, making CI and local debugging easier.
-
-### Clearer guidance for unknown flags passed to `run`
-
-Terragrunt now provides clearer guidance when users pass unknown flags to `run` commands, reducing time spent troubleshooting CLI usage.
-
-### Provider version discovery ignores invalid version strings
-
-Provider version reporting is now more accurate by ignoring invalid version strings instead of treating them as usable versions.
-
-### Discovery treats `*url.Error` as an offline condition
-
-Discovery is more resilient in restricted or offline environments so failures are classified correctly.
-
-### Include path tracking uses normalized absolute paths
-
-Path handling is more consistent across environments, reducing issues caused by relative or mismatched paths.
+# Fix: split them into separate folders (one format per folder)
+./live/prod/app/terragrunt.hcl
+./live/prod/app-stack/terragrunt.stack.hcl
+```
 
 ## 📖 Documentation Updates
 
 ### Guidance updated for recent CLI deprecations
 
-The documentation has been updated to reflect recent CLI deprecations and completed behaviors, so guidance matches what the CLI actually does today.
+The strict controls and CLI redesign docs now reflect deprecated flags and current CLI behavior.
 
 ### Site prepared for the `docs.terragrunt.com` domain transition
 
-Terragrunt’s documentation site has been prepared for the new docs domain so existing links continue to work during the transition.
+The documentation site now includes redirects and schema updates for `docs.terragrunt.com`.
 
 ### Compatibility documentation updated for path-based routes
 
-The compatibility documentation and routes have been modernized so the URLs are more stable and easier to link to.
+The compatibility docs and routes now use path-based endpoints instead of query parameters.
+
+## 🐛 Bug Fixes
+
+### `${...}` expansion avoided in complex `TF_VAR_*` values
+
+A bug caused `${...}` patterns in complex `TF_VAR_*` values to expand unexpectedly, and Terragrunt now escapes those patterns.
+
+### More actionable diagnostics when hooks fail
+
+Hook failures previously omitted key execution details, and Terragrunt now logs the hook command, exit code, and output.
+
+### Clearer guidance for unknown flags passed to `run`
+
+Unknown flags passed to `run` previously produced unhelpful errors, and Terragrunt now prints a passthrough hint.
+
+### Provider version discovery ignores invalid version strings
+
+Provider version discovery previously accepted invalid version strings, and Terragrunt now ignores non-semver values.
+
+### Discovery treats `*url.Error` as an offline condition
+
+Discovery previously misclassified `*url.Error` failures, and Terragrunt now treats them as an offline condition.
+
+### Include path tracking uses normalized absolute paths
+
+Relative include paths previously caused inconsistent include tracking, and Terragrunt now records normalized absolute paths.
 
 ## 🧹 Chores
 
@@ -72,30 +84,30 @@ Developer tooling and lint configuration were adjusted to reduce false positives
 
 ### More efficient filter evaluation
 
-Filter evaluation is now more efficient, improving performance for workflows that rely heavily on filtering and classification.
+Terragrunt evaluates filters more efficiently, improving performance for workflows that rely heavily on filtering and classification.
 
 ## ⚙️ Process Updates
 
 ### Options and configuration plumbing refactored
 
-Terragrunt’s internal option and configuration plumbing has been modernized to make the codebase easier to extend without relying on a single global options struct.
+Terragrunt refactored option handling to use dedicated option structs (e.g., `run.Options`) instead of a single global options struct.
 
 ### Standardized path normalization strategy
 
-Terragrunt’s path normalization strategy was standardized so command execution and repo discovery behave consistently across operating systems and working directories.
+Terragrunt standardized path normalization to reduce `filepath.Abs`/`filepath.ToSlash` usage in favor of root-working-dir–relative joins and `filepath.Clean`.
 
 ### More configurable remote state initialization
 
-Remote state initialization behavior is now more configurable to better support Terragrunt and Terraform workflows with custom backend bootstrapping.
+`remote_state.disable_init` now skips Terragrunt backend bootstrapping while still passing `-backend-config` arguments through to Terraform.
 
 ### Output and execution wiring simplified
 
-Output and execution wiring has been simplified so components receive only the information they need, which reduces coupling and makes behavior easier to validate.
+Terragrunt centralized output handling in `Writers`, reducing coupling by passing only required execution and output context to components.
 
 ### Error handling standardized
 
-Error handling was standardized to make failures easier to understand and test.
+Terragrunt standardized worker-pool and retry error handling around `MultiError` and stricter stderr matching.
 
 ### Refined cloud-provider auth and CLI helpers
 
-Cloud-provider authentication and CLI helpers were refined so behavior is more predictable in complex environments.
+GCP and IAM credential helpers now behave more predictably, including GCP impersonation overriding base credentials.
