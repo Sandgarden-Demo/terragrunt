@@ -66,13 +66,13 @@ Release candidates in the `rc` channel will undergo more thorough testing, both 
 
 * Strengthened Windows path handling so path related functions and file resolution now use operating system native paths more consistently. Teams that run Terragrunt on Windows should verify any custom path normalization because path separators may differ from earlier release candidates.
 
-* Refined backend initialization when `disable_init = true` so Terragrunt avoids incorrect backend init behavior in configurations that intentionally disable initialization.
+* Refined behavior when `disable_init = true` so Terragrunt no longer starts backend setup in configurations that explicitly turn initialization off.
 
 * Fixed `-detailed-exitcode` handling when combined with `--working-dir` and `terraform.source` so automation can rely on the expected exit status in those workflows.
 
-* Corrected retryable error matching so Terragrunt evaluates actual process errors more accurately instead of matching unrelated flag text such as `-timeout`.
+* Corrected retryable error checks so Terragrunt matches real command failures more accurately instead of reacting to unrelated flag text such as `-timeout`.
 
-* Enhanced variable value interpolation so Terragrunt resolves variable driven configuration more reliably in affected setups.
+* Enhanced variable expansion so Terragrunt resolves values taken from variables more reliably in affected configurations.
 
 * Stabilized worker pool error reporting so Terragrunt no longer surfaces duplicate errors for the same failure path.
 
