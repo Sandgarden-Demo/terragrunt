@@ -64,7 +64,7 @@ Release candidates in the `rc` channel will undergo more thorough testing, both 
 
 ## v1.0.0-rc3
 
-* Improved Windows path handling so HCL path functions and related file resolution behavior now use operating system native paths more consistently. Teams that run Terragrunt on Windows should verify any custom path normalization because path separators may differ from earlier release candidates.
+* Strengthened Windows path handling so path related functions and file resolution now use operating system native paths more consistently. Teams that run Terragrunt on Windows should verify any custom path normalization because path separators may differ from earlier release candidates.
 
 * Refined backend initialization when `disable_init = true` so Terragrunt avoids incorrect backend init behavior in configurations that intentionally disable initialization.
 
@@ -76,13 +76,13 @@ Release candidates in the `rc` channel will undergo more thorough testing, both 
 
 * Stabilized worker pool error reporting so Terragrunt no longer surfaces duplicate errors for the same failure path.
 
-* Improved offline detection for discovery requests so transport and DNS failures now behave as offline scenarios instead of producing less helpful outcomes.
+* Recognized offline discovery failures more reliably so transport and DNS errors now behave as offline scenarios instead of producing less helpful outcomes.
 
 * Fixed migration of deprecated attributes so configuration updates handle those attributes more reliably during migration related workflows.
 
 * Corrected tracked file reading for relative paths so Terragrunt can follow those files more reliably in configurations that depend on relative references.
 
-* Clarified hook failure messages so hook execution errors distinguish process startup failures from commands that ran and returned a non zero exit code.
+* Clarified hook failure messages so hook errors distinguish command launch failures from commands that ran and returned a non zero exit code.
 
 * Expanded configuration testing coverage to strengthen confidence in recent config behavior and reduce the risk of regressions.
 
