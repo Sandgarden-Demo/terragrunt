@@ -14,46 +14,46 @@ This page covers the changes between commits `87be4029638492b5a9114b104e9f0c8c4b
 * Bumped the project runtime to Go 1.25.6.
 * Updated the IaC toolchain to Terraform 1.14.4 and OpenTofu 1.11.4.
 * Added a new ambassador profile to the documentation site.
-* Added a verification test for init-from-module and improved its discoverability.
+* Added a verification test for `init-from-module` and improved its discoverability.
 * Reduced overly aggressive warnings from strict controls.
-* Fixed included run_cmd calls so their output is emitted correctly.
+* Fixed included `run_cmd` calls so their output is emitted correctly.
 * Fixed provider cache server integration with custom registries.
-* Corrected exclude behavior for no_run.
-* Added --report-file support for single-unit runs.
+* Corrected exclude behavior for `no_run`.
+* Added `--report-file` support for single unit runs.
 * Removed path manipulation from log messages to keep reported paths accurate.
 * Updated the community Discord link in the docs.
-* Added automated coverage for RelPathForLog.
+* Added automated coverage for `RelPathForLog`.
 * Added a simple component for Pagefind styles.
 * Added Pagefind CSS styling.
 * Updated OpenTelemetry, AWS, and go-git dependencies.
-* Removed unused constants and simplified noRun checking.
+* Removed unused constants and simplified `noRun` checking.
 * Fixed provider cache server self-discovery when registries return absolute URLs.
 * Fixed locking around SOPS decryption environment variables.
 * Restored version-constraint enforcement when running a stack.
 * Fixed signal propagation during Terragrunt runs.
-* Fixed render --format=json.
+* Fixed `render --format=json`.
 * Added VFS testing and integrated VFS support into provider cache flows.
 * Corrected a command reference in the CLI redesign documentation.
 * Added Golang compatibility notes to the documentation.
 * Upgraded the project to Go 1.26.
 * Improved remote configuration parsing.
 * Fixed the partial parse config cache.
-* Stabilized report timing output by synchronizing stdout and stderr writes.
+* Stabilized report timing output by synchronizing `stdout` and `stderr` writes.
 * Refactored discovery to handle nuanced parse behavior more accurately.
 * Cleaned up units-related code.
 * Bumped aws-actions/configure-aws-credentials from v5 to v6.
 * Adjusted engine output and improved graceful exits.
 * Broke the filters documentation into smaller, clearer sections.
 * Cleaned up SOPS tests.
-* Sped up EncodeSourceVersion by skipping cache directories during traversal.
+* Sped up `EncodeSourceVersion` by skipping cache directories during traversal.
 * Reverted temporary CSS fixes after the docs site went live.
 * Made the filter documentation more consistent.
 * Removed option dependencies from shared components as part of a cleanup refactor.
-* Refactored cache-directory exclusion logic.
+* Refactored cache directory exclusion logic.
 * Cleaned up follow-up work from #5559.
 * Added a discovery benchmark.
 * Added a callout documenting the lack of library compatibility guarantees.
-* Reduced the dependency on opts inside config code paths.
+* Reduced the dependency on `opts` inside config code paths.
 * Improved CI/CD base-test performance.
-* Documented the deprecation of --disable-dependent-modules.
+* Documented the deprecation of `--disable-dependent-modules`.
 * Updated GRPC and AWS dependencies.
